@@ -9,5 +9,8 @@
         <module name="helloActor" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="helloActor-24" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

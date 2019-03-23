@@ -4,44 +4,48 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ll.study</groupId>
-    <artifactId>helloActor</artifactId>
+    <groupId>cn.edu360.class24</groupId>
+    <artifactId>helloActor-24</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!-- 定义一下常量-->
+    <!-- 定义一下常量 -->
     <properties>
         <encoding>UTF-8</encoding>
         <scala.version>2.11.8</scala.version>
         <scala.compat.version>2.11</scala.compat.version>
         <akka.version>2.4.17</akka.version>
     </properties>
+
     <dependencies>
-        <!-- 添加scala 的依赖-->
+        <!-- 添加scala的依赖 -->
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
         </dependency>
-        <!-- 添加akka 的actor 依赖-->
+
+        <!-- 添加akka的actor依赖 -->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-actor_${scala.compat.version}</artifactId>
             <version>${akka.version}</version>
         </dependency>
-        <!-- 多进程之间的Actor 通信-->
+
+        <!-- 多进程之间的Actor通信 -->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-remote_${scala.compat.version}</artifactId>
             <version>${akka.version}</version>
         </dependency>
     </dependencies>
+
     <!-- 指定插件-->
     <build>
-        <!-- 指定源码包和测试包的位置-->
+        <!-- 指定源码包和测试包的位置 -->
         <sourceDirectory>src/main/scala</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
         <plugins>
-            <!-- 指定编译scala 的插件-->
+            <!-- 指定编译scala的插件 -->
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
@@ -61,7 +65,8 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- maven 打包的插件-->
+
+            <!-- maven打包的插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -84,15 +89,12 @@
                                 </filter>
                             </filters>
                             <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>reference.conf</resource>
                                 </transformer>
-                                <!-- 指定main 方法-->
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransfor
-mer">
-                                    <mainClass></mainClass>
+                                <!-- 指定main方法 -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>spark.SparkMaster</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
